@@ -33,6 +33,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
 // OTHERS
-Route::post('forgot_password', [RegisteredUserController::class, 'forgotPassword']);
-Route::post('reset_password', [RegisteredUserController::class, 'resetPassword']);
+Route::post('password-forgot', [RegisteredUserController::class, 'forgotPassword']);
+Route::post('password-reset', [RegisteredUserController::class, 'resetPassword']);
 
