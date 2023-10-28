@@ -51,6 +51,11 @@ class RegisteredUserController extends Controller
 
     // FORGOT PASSWORD
 
+    /**
+     * Créer un nouvel utilisateur.
+     *
+     * @bodyParam email string required Adresse e-mail de l'utilisateur.
+     */
     public function forgotPassword(Request $request)
     {
         try {
