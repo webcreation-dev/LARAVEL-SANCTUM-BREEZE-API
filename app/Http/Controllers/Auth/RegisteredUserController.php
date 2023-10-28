@@ -19,9 +19,12 @@ use Illuminate\Validation\ValidationException;
 class RegisteredUserController extends Controller
 {
     /**
-     * Handle an incoming registration request.
+     * Enregister un nouvel utilisateur
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @bodyParam name string required Nom de l'utilisateur.
+     * @bodyParam email string required Adresse e-mail de l'utilisateur.
+     * @bodyParam password string required Mot de passe de l'utilisateur.
+     * @bodyParam password_confirmation string required Confirmation du mot de passe de l'utilisateur.
      */
     public function store(Request $request)
     {
@@ -50,9 +53,8 @@ class RegisteredUserController extends Controller
     }
 
     // FORGOT PASSWORD
-
     /**
-     * Créer un nouvel utilisateur.
+     * Mot de passe oublié
      *
      * @bodyParam email string required Adresse e-mail de l'utilisateur.
      */
@@ -80,6 +82,9 @@ class RegisteredUserController extends Controller
     }
 
     // RESET PASSWORD
+    /**
+     * Réinitialiser le mot de passe
+     */
     public function resetPassword(Request $request)
     {
         $request->validate([
