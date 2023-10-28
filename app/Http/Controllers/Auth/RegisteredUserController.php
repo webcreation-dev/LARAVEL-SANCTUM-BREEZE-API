@@ -60,6 +60,8 @@ class RegisteredUserController extends Controller
      */
     public function forgotPassword(Request $request)
     {
+
+
         try {
            $request->validate([
                'email' => 'required|email',
@@ -72,9 +74,12 @@ class RegisteredUserController extends Controller
            );
 
            if ($status == Password::RESET_LINK_SENT) {
-               return response()->json(['message' => 'Lien de réinitialisation envoyé avec succès']);
+               return response()->json(['message' => 'Lien de réinitialisation envoyé avec succès', 'status' => __($status)]);
            } else {
-               return response()->json(['error' => 'Échec de l\'envoi du lien de réinitialisation'], 422);
+                throw ValidationException::withMessages([
+                    'email' => [__($status)],
+                ]);
+               return response()->json(['error' => 'Échec de l\'envoi du lien de réinitialisation', 'status' => __($status)], 422);
            }
        } catch (ValidationException $e) {
            return response()->json(['error' => 'Erreur de validation', 'errors' => $e->errors()], 422);
@@ -105,15 +110,16 @@ class RegisteredUserController extends Controller
             }
         );
 
+
         if ($status == Password::PASSWORD_RESET) {
-            return response()->json(['message' => 'Mot de passe réinitialisé avec succès']);
+            return response()->json(['status' => 'Mot de passe réinitialisé avec succès']);
         } else {
             if ($status === Password::INVALID_TOKEN) {
-                return response()->json(['error' => 'Token de réinitialisation invalide'], 422);
+                return response()->json(['status' => 'Token de réinitialisation invalide'], 422);
             } elseif ($status === Password::INVALID_USER) {
-                return response()->json(['error' => 'Adresse e-mail non trouvée'], 422);
+                return response()->json(['status' => 'Adresse e-mail non trouvée'], 422);
             } else {
-                return response()->json(['error' => 'Échec de la réinitialisation du mot de passe'], 422);
+                return response()->json(['status' => 'Échec de la réinitialisation du mot de passe'], 422);
             }
         }
     }
