@@ -17,9 +17,7 @@ class AuthenticatedSessionController extends Controller
     {
         try {
             $request->authenticate();
-
             $request->session()->regenerate();
-
             return response()->json(['message' => 'Connexion reussie']);
         } catch (ValidationException $e) {
             return response()->json(['message' => 'Échec de la connexion', 'errors' => $e->errors()], 422);
