@@ -13,6 +13,9 @@ use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
+    /**
+     * Connecter un utilisateur
+     */
     public function store(LoginRequest $request)
     {
         try {
@@ -27,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Destroy an authenticated session.
+     * Déconnecter un utilisateur
      */
     public function destroy(Request $request): Response
     {

@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 class PasswordResetLinkController extends Controller
 {
     /**
-     * Handle an incoming password reset link request.
+     * Envoyer un lien de réinitialisation de mot de passe.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
