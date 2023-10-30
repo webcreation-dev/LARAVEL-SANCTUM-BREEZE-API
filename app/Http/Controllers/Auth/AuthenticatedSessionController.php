@@ -21,18 +21,21 @@ class AuthenticatedSessionController extends Controller
         try {
             $request->authenticate();
             $request->session()->regenerate();
-            return response()->json(['message' => 'Connexion reussie']);
+            return self::apiResponse(true, "Connexion reussie");
+            // return response()->json(['message' => 'Connexion reussie']);
         } catch (ValidationException $e) {
-            return response()->json(['message' => 'Échec de la connexion', 'errors' => $e->errors()], 422);
+            return self::apiResponse(false, "Échec de la connexion");
+            // return response()->json(['message' => 'Échec de la connexion', 'errors' => $e->errors()], 422);
         } catch (AuthenticationException $e) {
-            return response()->json(['message' => 'Échec de la connexion : identifiants incorrects'], 401);
+            return self::apiResponse(false, "Échec de la connexion : identifiants incorrects");
+            // return response()->json(['message' => 'Échec de la connexion : identifiants incorrects'], 401);
         }
     }
 
     /**
      * Déconnecter un utilisateur
      */
-    public function destroy(Request $request): Response
+    public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -40,7 +43,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return response()->noContent();
+        return self::apiResponse(true, "Déconnexion réussie");
+        // return response()->noContent();
+    }
+
+    public static function apiResponse($success, $message, $data = [], $status = 200) //: array
+    {
+        $response = response()->json([
+            'success' => $success,
+            'message' => $message,
+            'body' => $data
+        ], $status);
+        return $response;
     }
 
 }

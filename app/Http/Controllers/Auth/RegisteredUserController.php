@@ -44,12 +44,12 @@ class RegisteredUserController extends Controller
             event(new Registered($user));
 
             Auth::login($user);
-
-            return response()->json(['message' => 'Inscription reussie']);
+            return self::apiResponse(true, "Inscription reussie", $user);
+            // return response()->json(['message' => 'Inscription reussie']);
         } catch (ValidationException $e) {
-            return response()->json(['message' => 'Échec de l inscription', 'errors' => $e->errors()], 422);
+            return self::apiResponse(false, "Échec de l inscription");
+            // return response()->json(['message' => 'Échec de l inscription', 'errors' => $e->errors()], 422);
         }
-
     }
 
     // FORGOT PASSWORD
@@ -67,22 +67,26 @@ class RegisteredUserController extends Controller
                'email' => 'required|email',
            ]);
            if (!User::where('email', $request->only('email'))->exists()) {
-               return response()->json(['error' => 'Adresse e-mail non trouvée dans la base de données'], 422);
+                return self::apiResponse(false, "Adresse e-mail non trouvée dans la base de données");
+                // return response()->json(['error' => 'Adresse e-mail non trouvée dans la base de données'], 422);
            }
            $status = Password::sendResetLink(
                $request->only('email')
            );
 
            if ($status == Password::RESET_LINK_SENT) {
-               return response()->json(['message' => 'Lien de réinitialisation envoyé avec succès', 'status' => __($status)]);
+                return self::apiResponse(true, "Lien de réinitialisation envoyé avec succès");
+            //    return response()->json(['message' => 'Lien de réinitialisation envoyé avec succès', 'status' => __($status)]);
            } else {
                 throw ValidationException::withMessages([
                     'email' => [__($status)],
                 ]);
-               return response()->json(['error' => 'Échec de l\'envoi du lien de réinitialisation', 'status' => __($status)], 422);
+                return self::apiResponse(false, "Échec de l\'envoi du lien de réinitialisation");
+            //    return response()->json(['error' => 'Échec de l\'envoi du lien de réinitialisation', 'status' => __($status)], 422);
            }
        } catch (ValidationException $e) {
-           return response()->json(['error' => 'Erreur de validation', 'errors' => $e->errors()], 422);
+            return self::apiResponse(false, "Erreur de validation");
+            // return response()->json(['error' => 'Erreur de validation', 'errors' => $e->errors()], 422);
        }
     }
 
@@ -112,14 +116,18 @@ class RegisteredUserController extends Controller
 
 
         if ($status == Password::PASSWORD_RESET) {
-            return response()->json(['status' => 'Mot de passe réinitialisé avec succès']);
+            return self::apiResponse(true, "Mot de passe réinitialisé avec succès");
+            // return response()->json(['status' => 'Mot de passe réinitialisé avec succès']);
         } else {
             if ($status === Password::INVALID_TOKEN) {
-                return response()->json(['status' => 'Token de réinitialisation invalide'], 422);
+                return self::apiResponse(false, "Token de réinitialisation invalide");
+                // return response()->json(['status' => 'Token de réinitialisation invalide'], 422);
             } elseif ($status === Password::INVALID_USER) {
-                return response()->json(['status' => 'Adresse e-mail non trouvée'], 422);
+                return self::apiResponse(false, "Adresse e-mail non trouvée");
+                // return response()->json(['status' => 'Adresse e-mail non trouvée'], 422);
             } else {
-                return response()->json(['status' => 'Échec de la réinitialisation du mot de passe'], 422);
+                return self::apiResponse(false, "Échec de la réinitialisation du mot de passe");
+                // return response()->json(['status' => 'Échec de la réinitialisation du mot de passe'], 422);
             }
         }
     }
