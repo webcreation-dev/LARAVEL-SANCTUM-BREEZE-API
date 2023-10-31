@@ -21,6 +21,7 @@ class RegisteredUserController extends Controller
     /**
      * Enregister un nouvel utilisateur
      *
+     * @bodyParam profil_id number required Prodil de l'utilisateur.
      * @bodyParam name string required Nom de l'utilisateur.
      * @bodyParam email string required Adresse e-mail de l'utilisateur.
      * @bodyParam password string required Mot de passe de l'utilisateur.
@@ -30,12 +31,14 @@ class RegisteredUserController extends Controller
     {
         try {
             $request->validate([
+                'profil_id' => ['required'],
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
 
             $user = User::create([
+                'profil_id' => 1,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
