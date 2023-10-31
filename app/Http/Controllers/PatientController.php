@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PatientController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Liste des patients
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +26,7 @@ class PatientController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrer un nouveau patient
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -58,20 +58,20 @@ class PatientController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Afficher un patient
      *
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
-    {
-        // return view('patients.show', ['patient' => $patient]);
-        try {
-            return self::apiResponse(true, "Patient à voir", $patient);
-        }catch( ValidationException ) {
-            return self::apiResponse(false, "Echec de la recherche", $patient);
-        }
-    }
+    // public function show(Patient $patient)
+    // {
+    //     // return view('patients.show', ['patient' => $patient]);
+    //     try {
+    //         return self::apiResponse(true, "Patient à voir", $patient);
+    //     }catch( ValidationException ) {
+    //         return self::apiResponse(false, "Echec de la recherche", $patient);
+    //     }
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,18 +79,18 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
-    {
-        // return view('patients.edit', ['patient' => $patient]);
-        try {
-            return self::apiResponse(true, "Patient à mettre à jour", $patient);
-        }catch( ValidationException ) {
-            return self::apiResponse(false, "Echec de la recherche");
-        }
-    }
+    // public function edit(Patient $patient)
+    // {
+    //     // return view('patients.edit', ['patient' => $patient]);
+    //     try {
+    //         return self::apiResponse(true, "Patient à mettre à jour", $patient);
+    //     }catch( ValidationException ) {
+    //         return self::apiResponse(false, "Echec de la recherche");
+    //     }
+    // }
 
     /**
-     * Update the specified resource in storage.
+     * Mettre à jour un patient
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Patient  $patient
@@ -125,7 +125,7 @@ class PatientController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer un patient
      *
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response

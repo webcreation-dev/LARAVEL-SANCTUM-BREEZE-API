@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SellController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Liste des ventes
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +25,7 @@ class SellController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrer une nouvelle vente
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -57,15 +57,15 @@ class SellController extends Controller
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
      */
-    public function show(Sell $sell)
-    {
-        // return view('sells.show', ['sell' => $sell]);
-        try {
-            return self::apiResponse(true, "Vente à voir", $sell);
-        }catch( ValidationException ) {
-            return self::apiResponse(false, "Echec de la recherche");
-        }
-    }
+    // public function show(Sell $sell)
+    // {
+    //     // return view('sells.show', ['sell' => $sell]);
+    //     try {
+    //         return self::apiResponse(true, "Vente à voir", $sell);
+    //     }catch( ValidationException ) {
+    //         return self::apiResponse(false, "Echec de la recherche");
+    //     }
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -73,18 +73,18 @@ class SellController extends Controller
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sell $sell)
-    {
-        // return view('sells.edit', ['sell' => $sell]);
-        try {
-            return self::apiResponse(true, "Patient à mettre à jour", $sell);
-        }catch( ValidationException ) {
-            return self::apiResponse(false, "Echec de la recherche");
-        }
-    }
+    // public function edit(Sell $sell)
+    // {
+    //     // return view('sells.edit', ['sell' => $sell]);
+    //     try {
+    //         return self::apiResponse(true, "Patient à mettre à jour", $sell);
+    //     }catch( ValidationException ) {
+    //         return self::apiResponse(false, "Echec de la recherche");
+    //     }
+    // }
 
     /**
-     * Update the specified resource in storage.
+     * Mettre à jour une vente
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Sell  $sell
@@ -110,7 +110,7 @@ class SellController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer une vente
      *
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
