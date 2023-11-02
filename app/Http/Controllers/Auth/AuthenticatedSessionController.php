@@ -21,7 +21,9 @@ class AuthenticatedSessionController extends Controller
         try {
             $request->authenticate();
             $request->session()->regenerate();
-            return self::apiResponse(true, "Connexion reussie");
+            $user = User::where('email', $request->email)->first();
+            $token = $user->createToken('myapptoken')->plainTextToken;
+            return self::apiResponse(true, "Connexion reussie", [$user, $token]);
             // return response()->json(['message' => 'Connexion reussie']);
         } catch (ValidationException $e) {
             return self::apiResponse(false, "Échec de la connexion");
