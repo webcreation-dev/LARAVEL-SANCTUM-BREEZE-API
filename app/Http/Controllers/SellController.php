@@ -32,7 +32,6 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
-        // return redirect()->route('sells.index')->with('success', 'Vente ajoutée avec succès.');
         try {
 
             $data = $request->validate([
