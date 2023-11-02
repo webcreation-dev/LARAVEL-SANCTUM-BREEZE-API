@@ -31,7 +31,6 @@ class RegisteredUserController extends Controller
     {
         try {
             $request->validate([
-                // 'profil_id' => ['required'],
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -46,12 +45,11 @@ class RegisteredUserController extends Controller
 
             event(new Registered($user));
 
-            Auth::login($user);
-            return self::apiResponse(true, "Inscription reussie", $user);
-            // return response()->json(['message' => 'Inscription reussie']);
+            $token = $user->createToken('myapptoken')->plainTextToken;
+
+            return self::apiResponse(true, "Inscription reussie", [$user, $token]);
         } catch (ValidationException $e) {
             return self::apiResponse(false, "Échec de l inscription");
-            // return response()->json(['message' => 'Échec de l inscription', 'errors' => $e->errors()], 422);
         }
     }
 

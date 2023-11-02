@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        Profil::create([
-            'name' => 'Administrateur',
-        ]);
-        Profil::create([
-            'name' => 'Employé',
-        ]);
+        // Profil::create([
+        //     'name' => 'Administrateur',
+        // ]);
+        // Profil::create([
+        //     'name' => 'Employé',
+        // ]);
 
         User::factory()->create([
             'name' => 'Administrateur',
