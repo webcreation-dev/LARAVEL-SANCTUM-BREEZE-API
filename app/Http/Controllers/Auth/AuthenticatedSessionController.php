@@ -36,8 +36,6 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Déconnecter un utilisateur
-     *
-     * @bodyParam email string required Adresse e-mail de l'utilisateur.
      */
     public function destroy(Request $request)
     {
@@ -46,10 +44,10 @@ class AuthenticatedSessionController extends Controller
         // $request->session()->invalidate();
 
         // $request->session()->regenerateToken();
-        $user = User::where('email', $request->email)->first();
-        $user->tokens()->delete();
+        auth()->user()->tokens()->delete();
 
         return self::apiResponse(true, "Déconnexion réussie");
+        // return response()->noContent();
     }
 
     public static function apiResponse($success, $message, $data = [], $status = 200) //: array
