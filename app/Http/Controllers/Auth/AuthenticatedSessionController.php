@@ -44,7 +44,8 @@ class AuthenticatedSessionController extends Controller
         // $request->session()->invalidate();
 
         // $request->session()->regenerateToken();
-        Auth()->user()->tokens()->delete();
+        $user = User::where('email', $request->email)->first();
+        $user->tokens()->delete();
 
         return self::apiResponse(true, "Déconnexion réussie");
         // return response()->noContent();
