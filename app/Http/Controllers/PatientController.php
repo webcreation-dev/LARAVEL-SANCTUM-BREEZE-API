@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class PatientController extends Controller
 {
     /**
+     * @authenticated
      * Liste des patients
      *
      * @return \Illuminate\Http\Response
