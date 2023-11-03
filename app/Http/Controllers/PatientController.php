@@ -70,7 +70,7 @@ class PatientController extends Controller
 
 
     /**
-     * Mettre à jour un patient
+     * METTRE A JOUR UN PATIENT
      *
      * @bodyParam last_name string Nom
      * @bodyParam first_name string Prenom
@@ -116,7 +116,7 @@ class PatientController extends Controller
     }
 
     /**
-     * Supprimer un patient
+     * SUPPRIMER UN PATIENT
      *
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
