@@ -9,13 +9,12 @@ use Illuminate\Http\Request;
 class SellController extends Controller
 {
     /**
-     * Liste des ventes
+     * LISTES DES VENTES
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // return view('sells.index', ['sells' => $sells]);
         try {
             $sells = Sell::all();
             return self::apiResponse(true, "Récupération de tous les ventes", $sells);
@@ -25,7 +24,14 @@ class SellController extends Controller
     }
 
     /**
-     * Enregistrer une nouvelle vente
+     * ENREGISTRER UNE VENTE
+     *
+     * @bodyParam patient_id number required ID du patient
+     * @bodyParam verre_type string required Type de verre
+     * @bodyParam montant numeric required Montant
+     * @bodyParam acompte numeric Acompte
+     * @bodyParam solde numeric Solde
+     * @bodyParam date_livraison date required Date de livraison
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,39 +57,14 @@ class SellController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * METTRE A JOUR UNE VENTE
      *
-     * @param  \App\Models\Sell  $sell
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Sell $sell)
-    // {
-    //     // return view('sells.show', ['sell' => $sell]);
-    //     try {
-    //         return self::apiResponse(true, "Vente à voir", $sell);
-    //     }catch( ValidationException ) {
-    //         return self::apiResponse(false, "Echec de la recherche");
-    //     }
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sell  $sell
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(Sell $sell)
-    // {
-    //     // return view('sells.edit', ['sell' => $sell]);
-    //     try {
-    //         return self::apiResponse(true, "Patient à mettre à jour", $sell);
-    //     }catch( ValidationException ) {
-    //         return self::apiResponse(false, "Echec de la recherche");
-    //     }
-    // }
-
-    /**
-     * Mettre à jour une vente
+     * @bodyParam patient_id number ID du patient
+     * @bodyParam verre_type string Type de verre
+     * @bodyParam montant numeric Montant
+     * @bodyParam acompte numeric Acompte
+     * @bodyParam solde numeric Solde
+     * @bodyParam date_livraison date Date de livraison
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Sell  $sell
@@ -91,7 +72,6 @@ class SellController extends Controller
      */
     public function update(Request $request, Sell $sell)
     {
-        // return redirect()->route('sells.index')->with('success', 'Vente mise à jour avec succès.');
         try {
             $data = $request->validate([
                 'patient_id' => 'number',
@@ -109,14 +89,13 @@ class SellController extends Controller
     }
 
     /**
-     * Supprimer une vente
+     * SUPPRIMER UNE VENTE
      *
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sell $sell)
     {
-        // return redirect()->route('sells.index')->with('success', 'Vente supprimée avec succès.');
         try {
             $sell->delete();
             return self::apiResponse(true, "Vente supprimé avec succès");

@@ -11,18 +11,16 @@ use Illuminate\Http\Request;
 class EmailVerificationNotificationController extends Controller
 {
     /**
-     * Envoyer une notification de vérification par e-mail.
+     * ENVOYER UN LIEN DE VERIFICATION
      */
     public function store(Request $request): JsonResponse|RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME);
         }
-
+        
         $request->user()->sendEmailVerificationNotification();
-
         return self::apiResponse(true, "Lien de vérification envoyé");
-        // return response()->json(['status' => 'verification-link-sent']);
     }
 
     public static function apiResponse($success, $message, $data = [], $status = 200) //: array

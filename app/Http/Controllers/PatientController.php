@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 class PatientController extends Controller
 {
     /**
-     * @authenticated
-     * Liste des patients
+     *
+     * LISTE DES PATIENTS
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // return view('patients.index', ['patients' => $patients]);
         try {
             $patients = Patient::all();
             return self::apiResponse(true, "Récupération de tous les patients", $patients);
@@ -27,14 +26,25 @@ class PatientController extends Controller
 
 
     /**
-     * Enregistrer un nouveau patient
+     * ENREGISTRER UN PATIENT
      *
+     * @bodyParam last_name string required Nom
+     * @bodyParam first_name string required Prenom
+     * @bodyParam email string required Email
+     * @bodyParam phone_number string required Téléphone
+     * @bodyParam frame string required Monture
+     * @bodyParam reference string required Reference
+     * @bodyParam color string required Adresse Couleur
+     * @bodyParam price string required Prix
+     * @bodyParam left_eye_vl_correction string required Correction Oeil Gauche VL
+     * @bodyParam left_eye_vp_correction string required Correction Oeil Gauche VP
+     * @bodyParam right_eye_vl_correction string required Correction Oeil Droit VL
+     * @bodyParam right_eye_vp_correction string required Correction Oeil Droit VP
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // return redirect()->route('patients.index')->with('success', 'Patient ajouté avec succès.');
         try {
 
             $data = $request->validate([
@@ -58,40 +68,22 @@ class PatientController extends Controller
         }
     }
 
-    /**
-     * Afficher un patient
-     *
-     * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Patient $patient)
-    // {
-    //     // return view('patients.show', ['patient' => $patient]);
-    //     try {
-    //         return self::apiResponse(true, "Patient à voir", $patient);
-    //     }catch( ValidationException ) {
-    //         return self::apiResponse(false, "Echec de la recherche", $patient);
-    //     }
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(Patient $patient)
-    // {
-    //     // return view('patients.edit', ['patient' => $patient]);
-    //     try {
-    //         return self::apiResponse(true, "Patient à mettre à jour", $patient);
-    //     }catch( ValidationException ) {
-    //         return self::apiResponse(false, "Echec de la recherche");
-    //     }
-    // }
 
     /**
      * Mettre à jour un patient
+     *
+     * @bodyParam last_name string Nom
+     * @bodyParam first_name string Prenom
+     * @bodyParam email string Email
+     * @bodyParam phone_number string Téléphone
+     * @bodyParam frame string Monture
+     * @bodyParam reference string Reference
+     * @bodyParam color string Adresse Couleur
+     * @bodyParam price string Prix
+     * @bodyParam left_eye_vl_correction string Correction Oeil Gauche VL
+     * @bodyParam left_eye_vp_correction string Correction Oeil Gauche VP
+     * @bodyParam right_eye_vl_correction string Correction Oeil Droit VL
+     * @bodyParam right_eye_vp_correction string Correction Oeil Droit VP
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Patient  $patient
@@ -99,8 +91,6 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        // return redirect()->route('patients.index')->with('success', 'Patient mis à jour avec succès.');
-
         try {
             $data = $request->validate([
                 'last_name' => 'string',
@@ -133,7 +123,6 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        // return redirect()->route('patients.index')->with('success', 'Patient supprimé avec succès.');
         try {
             $patient->delete();
             return self::apiResponse(true, "Patient supprimé avec succès");

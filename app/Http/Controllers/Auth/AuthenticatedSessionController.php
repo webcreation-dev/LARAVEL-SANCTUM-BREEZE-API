@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Connecter un utilisateur
+     * CONNEXION
      */
     public function store(LoginRequest $request)
     {
@@ -24,30 +24,20 @@ class AuthenticatedSessionController extends Controller
             $user = User::where('email', $request->email)->first();
             $token = $user->createToken('myapptoken')->plainTextToken;
             return self::apiResponse(true, "Connexion reussie", [$user, $token]);
-            // return response()->json(['message' => 'Connexion reussie']);
         } catch (ValidationException $e) {
             return self::apiResponse(false, "Échec de la connexion");
-            // return response()->json(['message' => 'Échec de la connexion', 'errors' => $e->errors()], 422);
         } catch (AuthenticationException $e) {
             return self::apiResponse(false, "Échec de la connexion : identifiants incorrects");
-            // return response()->json(['message' => 'Échec de la connexion : identifiants incorrects'], 401);
         }
     }
 
     /**
-     * Déconnecter un utilisateur
+     * DECONNEXION
      */
-    public function destroy(Request $request)
+    public function destroy()
     {
-        // Auth::guard('web')->logout();
-
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
         auth()->user()->tokens()->delete();
-
         return self::apiResponse(true, "Déconnexion réussie");
-        // return response()->noContent();
     }
 
     public static function apiResponse($success, $message, $data = [], $status = 200) //: array
