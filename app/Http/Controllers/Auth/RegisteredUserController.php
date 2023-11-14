@@ -18,6 +18,12 @@ use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
+
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return self::apiResponse(true, "Liste des utilisateurs", $users);
+    }
     /**
      * ENREGISTRER UN NOUVEL UTILISATEUR
      *
