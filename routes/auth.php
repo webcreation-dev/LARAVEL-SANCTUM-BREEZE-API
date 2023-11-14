@@ -36,4 +36,6 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
                 ->middleware(['auth', 'throttle:6,1'])
                 ->name('verification.send');
 
+Route::get('/get_all_users', [RegisteredUserController::class, 'getAllUsers']);
+
 
