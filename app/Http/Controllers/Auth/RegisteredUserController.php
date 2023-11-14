@@ -19,6 +19,10 @@ use Illuminate\Validation\ValidationException;
 class RegisteredUserController extends Controller
 {
 
+    /**
+     * LISTE DES UTILISATEURS
+     *
+     */
     public function getAllUsers()
     {
         $users = User::all();
