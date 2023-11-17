@@ -26,6 +26,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Employé',
         // ]);
 
+        Profil::create([
+            'name' => 'Administrateur',
+            'name' => 'Employé',
+            'name' => 'Manager',
+        ]);
+
         User::factory()->create([
             'name' => 'Administrateur',
             'email' => 'adjilan2403@gmail.com',

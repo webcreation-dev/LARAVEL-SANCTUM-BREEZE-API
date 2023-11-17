@@ -10,6 +10,6 @@ class Profil extends Model
     use HasFactory;
 
     protected $fillable = [
-        'verre_type',
+        'name',
     ];
 }
