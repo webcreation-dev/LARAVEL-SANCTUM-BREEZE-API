@@ -84,9 +84,9 @@ class RegisteredUserController extends Controller
             ]);
 
             $user = User::find($user->id);
-            $status = Password::sendResetLink(
-                $user->email
-            );
+            $status = Password::sendResetLink([
+                'email' => $user->email
+            ]);
 
             if ($status == Password::RESET_LINK_SENT) {
                  return self::apiResponse(true, "Nouvel employé créée avec succès");
