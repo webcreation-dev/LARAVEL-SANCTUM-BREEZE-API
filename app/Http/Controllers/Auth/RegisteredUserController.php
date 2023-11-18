@@ -61,6 +61,39 @@ class RegisteredUserController extends Controller
         }
     }
 
+    public function createEmployee(Request $request) {
+
+        try {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ]);
+
+            $user = User::create([
+                'profil_id' => 2,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make('password'),
+            ]);
+
+            $user = User::find($user->id);
+            $status = Password::sendResetLink(
+                $user->email
+            );
+
+            if ($status == Password::RESET_LINK_SENT) {
+                 return self::apiResponse(true, "Nouvel employé créée avec succès");
+            } else {
+                 throw ValidationException::withMessages([
+                     'email' => [__($status)],
+                 ]);
+                 return self::apiResponse(false, "Échec de la création de l'employé");
+            }
+        } catch (ValidationException $e) {
+            return self::apiResponse(false, "Échec de l inscription de l'employé");
+        }
+    }
+
     // FORGOT PASSWORD
     /**
      * MOT DE PASSE OUBLIE
@@ -69,8 +102,6 @@ class RegisteredUserController extends Controller
      */
     public function forgotPassword(Request $request)
     {
-
-
         try {
            $request->validate([
                'email' => 'required|email',
