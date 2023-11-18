@@ -62,7 +62,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * CREER UN EMPLOYE
+     * CREER UN NOUVEL EMPLOYE
      *
      * @bodyParam name string required Nom
      * @bodyParam email string required Email
