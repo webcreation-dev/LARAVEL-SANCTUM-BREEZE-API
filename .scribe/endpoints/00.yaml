@@ -10,7 +10,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Handle an incoming registration request.'
+      title: 'ENREGISTRER UN NOUVEL UTILISATEUR'
       description: ''
       authenticated: false
       custom: []
@@ -21,8 +21,44 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: Nom
+        required: true
+        example: fuga
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: Email
+        required: true
+        example: vilma07@example.net
+        type: string
+        enumValues: []
+        custom: []
+      password:
+        name: password
+        description: 'Mot de passe'
+        required: true
+        example: 'YO''Mad.D7g'
+        type: string
+        enumValues: []
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Confirmation du mot de passe'
+        required: true
+        example: reiciendis
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: fuga
+      email: vilma07@example.net
+      password: 'YO''Mad.D7g'
+      password_confirmation: reiciendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -40,7 +76,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Handle an incoming authentication request.'
+      title: CONNEXION
       description: ''
       authenticated: false
       custom: []
@@ -56,7 +92,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: carolina34@example.org
+        example: bbraun@example.org
         type: string
         enumValues: []
         custom: []
@@ -64,13 +100,52 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: ',F8kl5|wq2(^.'
+        example: '9AG:Cye?H2f8'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      email: carolina34@example.org
-      password: ',F8kl5|wq2(^.'
+      email: bbraun@example.org
+      password: '9AG:Cye?H2f8'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/forgot-password
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'MOT DE PASSE OUBLIE'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Adresse e-mail de l''utilisateur.'
+        required: true
+        example: hudson.mark@example.net
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      email: hudson.mark@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -88,7 +163,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Handle an incoming new password request.'
+      title: 'REINITIALISER LE MOT DE PASSE'
       description: ''
       authenticated: false
       custom: []
@@ -104,7 +179,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: sunt
+        example: inventore
         type: string
         enumValues: []
         custom: []
@@ -112,7 +187,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: satterfield.chanel@example.org
+        example: monahan.priscilla@example.org
         type: string
         enumValues: []
         custom: []
@@ -120,14 +195,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: nesciunt
+        example: omnis
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      token: sunt
-      email: satterfield.chanel@example.org
-      password: nesciunt
+      token: inventore
+      email: monahan.priscilla@example.org
+      password: omnis
     fileParameters: []
     responses: []
     responseFields: []
@@ -145,7 +220,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mark the authenticated user''s email address as verified.'
+      title: 'MARQUER L''EMAIL COMME VERIFIE'
       description: ''
       authenticated: false
       custom: []
@@ -157,7 +232,7 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: voluptatem
+        example: neque
         type: string
         enumValues: []
         custom: []
@@ -165,13 +240,13 @@ endpoints:
         name: hash
         description: ''
         required: true
-        example: aut
+        example: non
         type: string
         enumValues: []
         custom: []
     cleanUrlParameters:
-      id: voluptatem
-      hash: aut
+      id: neque
+      hash: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,8 +259,8 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://127.0.0.1:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
+          set-cookie: 'laravel_session=5ZdcWF71k69ZicAhaORrY23YTbnl9aOjZ0IPeTf8; expires=Sun, 19-Nov-2023 01:07:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -203,7 +278,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Send a new email verification notification.'
+      title: 'ENVOYER UN LIEN DE VERIFICATION'
       description: ''
       authenticated: false
       custom: []
@@ -212,6 +287,718 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/get_all_users
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'LISTE DES UTILISATEURS'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"message":"Liste des utilisateurs","body":[{"id":6,"profil_id":1,"name":"Administrateur","email":"adjilan2403@gmail.com","email_verified_at":"2023-11-17T17:50:12.000000Z","created_at":"2023-11-17T17:50:12.000000Z","updated_at":"2023-11-17T17:50:12.000000Z"},{"id":7,"profil_id":1,"name":"admin","email":"charbelmamlankou@gmail.com","email_verified_at":null,"created_at":"2023-11-17T17:51:12.000000Z","updated_at":"2023-11-17T17:51:12.000000Z"},{"id":8,"profil_id":1,"name":"Jean","email":"jean@gmail.com","email_verified_at":null,"created_at":"2023-11-17T17:51:54.000000Z","updated_at":"2023-11-17T17:51:54.000000Z"},{"id":9,"profil_id":1,"name":"test","email":"test@gmail.com","email_verified_at":null,"created_at":"2023-11-18T10:56:42.000000Z","updated_at":"2023-11-18T10:56:42.000000Z"},{"id":10,"profil_id":1,"name":"admin","email":"test2@gmail.com","email_verified_at":null,"created_at":"2023-11-18T11:13:57.000000Z","updated_at":"2023-11-18T11:13:57.000000Z"},{"id":11,"profil_id":1,"name":"admin","email":"test3@gmail.com","email_verified_at":null,"created_at":"2023-11-18T11:15:45.000000Z","updated_at":"2023-11-18T11:15:45.000000Z"},{"id":12,"profil_id":1,"name":"admin","email":"test4@gmail.com","email_verified_at":null,"created_at":"2023-11-18T11:18:24.000000Z","updated_at":"2023-11-18T11:18:24.000000Z"},{"id":13,"profil_id":1,"name":"admin","email":"test5@gmail.com","email_verified_at":null,"created_at":"2023-11-18T11:19:10.000000Z","updated_at":"2023-11-18T11:19:10.000000Z"}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          vary: Origin
+          set-cookie: 'laravel_session=GgUwVLLQBrQ5InDbJw8ThssSAzWXOgeKSJ9e3rnK; expires=Sun, 19-Nov-2023 01:07:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/create_employees
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'CREER UN NOUVEL EMPLOYE'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: Nom
+        required: true
+        example: asperiores
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: Email
+        required: true
+        example: price.jan@example.net
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      name: asperiores
+      email: price.jan@example.net
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/patients
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'LISTE DES PATIENTS'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+          set-cookie: 'laravel_session=Let4GMIBgE1cPwEOmkr9w1cDVxqWMccaM1Rjmi35; expires=Sun, 19-Nov-2023 01:07:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/patients
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'ENREGISTRER UN PATIENT'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      last_name:
+        name: last_name
+        description: Nom
+        required: true
+        example: rerum
+        type: string
+        enumValues: []
+        custom: []
+      first_name:
+        name: first_name
+        description: Prenom
+        required: true
+        example: temporibus
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: Email
+        required: true
+        example: christop41@example.org
+        type: string
+        enumValues: []
+        custom: []
+      phone_number:
+        name: phone_number
+        description: Téléphone
+        required: true
+        example: fugit
+        type: string
+        enumValues: []
+        custom: []
+      frame:
+        name: frame
+        description: Monture
+        required: true
+        example: atque
+        type: string
+        enumValues: []
+        custom: []
+      reference:
+        name: reference
+        description: Reference
+        required: true
+        example: iste
+        type: string
+        enumValues: []
+        custom: []
+      color:
+        name: color
+        description: 'Adresse Couleur'
+        required: true
+        example: unde
+        type: string
+        enumValues: []
+        custom: []
+      price:
+        name: price
+        description: Prix
+        required: true
+        example: odit
+        type: string
+        enumValues: []
+        custom: []
+      left_eye_vl_correction:
+        name: left_eye_vl_correction
+        description: 'Correction Oeil Gauche VL'
+        required: true
+        example: esse
+        type: string
+        enumValues: []
+        custom: []
+      left_eye_vp_correction:
+        name: left_eye_vp_correction
+        description: 'Correction Oeil Gauche VP'
+        required: true
+        example: quis
+        type: string
+        enumValues: []
+        custom: []
+      right_eye_vl_correction:
+        name: right_eye_vl_correction
+        description: 'Correction Oeil Droit VL'
+        required: true
+        example: quia
+        type: string
+        enumValues: []
+        custom: []
+      right_eye_vp_correction:
+        name: right_eye_vp_correction
+        description: 'Correction Oeil Droit VP'
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      last_name: rerum
+      first_name: temporibus
+      email: christop41@example.org
+      phone_number: fugit
+      frame: atque
+      reference: iste
+      color: unde
+      price: odit
+      left_eye_vl_correction: esse
+      left_eye_vp_correction: quis
+      right_eye_vl_correction: quia
+      right_eye_vp_correction: et
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/patients/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'METTRE A JOUR UN PATIENT'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the patient.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      last_name:
+        name: last_name
+        description: Nom
+        required: false
+        example: est
+        type: string
+        enumValues: []
+        custom: []
+      first_name:
+        name: first_name
+        description: Prenom
+        required: false
+        example: possimus
+        type: string
+        enumValues: []
+        custom: []
+      email:
+        name: email
+        description: Email
+        required: false
+        example: bfritsch@example.com
+        type: string
+        enumValues: []
+        custom: []
+      phone_number:
+        name: phone_number
+        description: Téléphone
+        required: false
+        example: sequi
+        type: string
+        enumValues: []
+        custom: []
+      frame:
+        name: frame
+        description: Monture
+        required: false
+        example: est
+        type: string
+        enumValues: []
+        custom: []
+      reference:
+        name: reference
+        description: Reference
+        required: false
+        example: commodi
+        type: string
+        enumValues: []
+        custom: []
+      color:
+        name: color
+        description: 'Adresse Couleur'
+        required: false
+        example: quisquam
+        type: string
+        enumValues: []
+        custom: []
+      price:
+        name: price
+        description: Prix
+        required: false
+        example: vero
+        type: string
+        enumValues: []
+        custom: []
+      left_eye_vl_correction:
+        name: left_eye_vl_correction
+        description: 'Correction Oeil Gauche VL'
+        required: false
+        example: ut
+        type: string
+        enumValues: []
+        custom: []
+      left_eye_vp_correction:
+        name: left_eye_vp_correction
+        description: 'Correction Oeil Gauche VP'
+        required: false
+        example: soluta
+        type: string
+        enumValues: []
+        custom: []
+      right_eye_vl_correction:
+        name: right_eye_vl_correction
+        description: 'Correction Oeil Droit VL'
+        required: false
+        example: quia
+        type: string
+        enumValues: []
+        custom: []
+      right_eye_vp_correction:
+        name: right_eye_vp_correction
+        description: 'Correction Oeil Droit VP'
+        required: false
+        example: similique
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      last_name: est
+      first_name: possimus
+      email: bfritsch@example.com
+      phone_number: sequi
+      frame: est
+      reference: commodi
+      color: quisquam
+      price: vero
+      left_eye_vl_correction: ut
+      left_eye_vp_correction: soluta
+      right_eye_vl_correction: quia
+      right_eye_vp_correction: similique
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/patients/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'SUPPRIMER UN PATIENT'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the patient.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/sells
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'LISTES DES VENTES'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+          set-cookie: 'laravel_session=ANNuO3qC7Vqg9bbxu8KgfvakbdHVu3zuj88SVC49; expires=Sun, 19-Nov-2023 01:07:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/sells
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'ENREGISTRER UNE VENTE'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      patient_id:
+        name: patient_id
+        description: 'ID du patient'
+        required: true
+        example: 45961.13
+        type: number
+        enumValues: []
+        custom: []
+      verre_type:
+        name: verre_type
+        description: 'Type de verre'
+        required: true
+        example: similique
+        type: string
+        enumValues: []
+        custom: []
+      montant:
+        name: montant
+        description: Montant
+        required: true
+        example: et
+        type: numeric
+        enumValues: []
+        custom: []
+      acompte:
+        name: acompte
+        description: Acompte
+        required: false
+        example: accusamus
+        type: numeric
+        enumValues: []
+        custom: []
+      solde:
+        name: solde
+        description: Solde
+        required: false
+        example: quia
+        type: numeric
+        enumValues: []
+        custom: []
+      date_livraison:
+        name: date_livraison
+        description: 'Date de livraison'
+        required: true
+        example: quaerat
+        type: date
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      patient_id: 45961.13
+      verre_type: similique
+      montant: et
+      acompte: accusamus
+      solde: quia
+      date_livraison: quaerat
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/sells/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'METTRE A JOUR UNE VENTE'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the sell.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      patient_id:
+        name: patient_id
+        description: 'ID du patient'
+        required: false
+        example: 15.30682435
+        type: number
+        enumValues: []
+        custom: []
+      verre_type:
+        name: verre_type
+        description: 'Type de verre'
+        required: false
+        example: nihil
+        type: string
+        enumValues: []
+        custom: []
+      montant:
+        name: montant
+        description: Montant
+        required: false
+        example: molestiae
+        type: numeric
+        enumValues: []
+        custom: []
+      acompte:
+        name: acompte
+        description: Acompte
+        required: false
+        example: aliquid
+        type: numeric
+        enumValues: []
+        custom: []
+      solde:
+        name: solde
+        description: Solde
+        required: false
+        example: fugiat
+        type: numeric
+        enumValues: []
+        custom: []
+      date_livraison:
+        name: date_livraison
+        description: 'Date de livraison'
+        required: false
+        example: ut
+        type: date
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      patient_id: 15.30682435
+      verre_type: nihil
+      montant: molestiae
+      acompte: aliquid
+      solde: fugiat
+      date_livraison: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/sells/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'SUPPRIMER UNE VENTE'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the sell.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -233,7 +1020,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Destroy an authenticated session.'
+      title: DECONNEXION
       description: ''
       authenticated: false
       custom: []
@@ -246,93 +1033,6 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/password-forgot
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/password-reset
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      token:
-        name: token
-        description: ''
-        required: true
-        example: dicta
-        type: string
-        enumValues: []
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: max10@example.org
-        type: string
-        enumValues: []
-        custom: []
-      password:
-        name: password
-        description: ''
-        required: true
-        example: at
-        type: string
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      token: dicta
-      email: max10@example.org
-      password: at
     fileParameters: []
     responses: []
     responseFields: []
@@ -371,8 +1071,8 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://127.0.0.1:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
+          set-cookie: 'laravel_session=Au6IaJAIPNIThGiC6Jn0Ihs36PdABWTFqLAAYiom; expires=Sun, 19-Nov-2023 01:07:22 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
