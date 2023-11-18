@@ -61,6 +61,13 @@ class RegisteredUserController extends Controller
         }
     }
 
+    /**
+     * CREER UN EMPLOYE
+     *
+     * @bodyParam name string required Nom
+     * @bodyParam email string required Email
+     *
+     */
     public function createEmployee(Request $request) {
 
         try {
