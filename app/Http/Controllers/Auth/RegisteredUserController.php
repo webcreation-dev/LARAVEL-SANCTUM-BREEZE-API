@@ -64,8 +64,12 @@ class RegisteredUserController extends Controller
             ]);
 
             event(new Registered($user));
+
             $token = $user->createToken('myapptoken')->plainTextToken;
-            return self::apiResponse(true, "Inscription reussie", [$user, $token]);
+            $userResponse = User::find($user->id);
+            $userResponse->token = $token;
+
+            return self::apiResponse(true, "Inscription reussie", $userResponse);
         } catch (ValidationException $e) {
             return self::apiResponse(false, "Échec de l inscription");
         }
