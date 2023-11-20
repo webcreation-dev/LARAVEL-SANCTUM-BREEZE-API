@@ -37,6 +37,5 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
                 ->name('verification.send');
 
 Route::get('/get_all_users', [RegisteredUserController::class, 'getAllUsers']);
-Route::post('/create_employees', [RegisteredUserController::class, 'createEmployee']);
 
 

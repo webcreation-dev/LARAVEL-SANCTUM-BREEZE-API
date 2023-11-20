@@ -28,6 +28,16 @@ class RegisteredUserController extends Controller
         $users = User::all();
         return self::apiResponse(true, "Liste des utilisateurs", $users);
     }
+
+    /**
+     * LISTE DES EMPLPOYES
+     *
+     */
+    public function getAllEmployees()
+    {
+        $employees = User::where('profil_id', 2)->get();
+        return self::apiResponse(true, "Liste des employés", $employees);
+    }
     /**
      * ENREGISTRER UN NOUVEL UTILISATEUR
      *
