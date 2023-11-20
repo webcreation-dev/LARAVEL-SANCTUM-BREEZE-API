@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SellController;
 use Illuminate\Support\Facades\Route;
