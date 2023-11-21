@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
@@ -192,5 +193,51 @@ class RegisteredUserController extends Controller
             'body' => $data
         ], $status);
         return $response;
+    }
+
+
+    /**
+     * MODIFIER UN EMPLOYE
+     *
+     * @bodyParam employee_id numeric required ID de l'empoyee
+     * @bodyParam name string required Nom
+     * @bodyParam password string required Mot de passe
+     * @bodyParam password_confirmation string required Confirmation du mot de passe
+     *
+     */
+    public function updateEmployee(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'employee_id' => ['required', 'numeric'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+
+            $user = User::find($data['employee_id']);
+            $user->update($data);
+
+            return self::apiResponse(true, "Employee mis à jour avec succès");
+        }catch( ValidationException ) {
+            return self::apiResponse(false, "Échec de la mise à jour de l'employée");
+        }
+    }
+
+    /**
+     * NOMBRE DE PATIENTS TRAITES PAR EMPLOYE
+     *
+     * @bodyParam employee_id numeric required ID de l'empoyee
+     */
+    public function getPatientTreatByEmployee(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'employee_id' => ['required', 'numeric'],
+            ]);
+            $user_count = Patient::where('user_id', $data['employee_id'])->count();
+            return self::apiResponse(true, "Nombre de patient traité par l'employé", $user_count);
+        }catch( ValidationException ) {
+            return self::apiResponse(false, "Échec de la récupération");
+        }
     }
 }

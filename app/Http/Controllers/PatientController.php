@@ -28,6 +28,7 @@ class PatientController extends Controller
     /**
      * ENREGISTRER UN PATIENT
      *
+     * @bodyParam user_id numeric required ID Employé
      * @bodyParam last_name string required Nom
      * @bodyParam first_name string required Prenom
      * @bodyParam email string required Email
@@ -48,6 +49,7 @@ class PatientController extends Controller
         try {
 
             $data = $request->validate([
+                'user_id' => 'required|numeric',
                 'last_name' => 'required|string',
                 'first_name' => 'required|string',
                 'email' => 'required|email|unique:patients,email',
@@ -72,6 +74,7 @@ class PatientController extends Controller
     /**
      * METTRE A JOUR UN PATIENT
      *
+     * @bodyParam user_id numeric required ID Employé
      * @bodyParam last_name string Nom
      * @bodyParam first_name string Prenom
      * @bodyParam email string Email
@@ -93,6 +96,7 @@ class PatientController extends Controller
     {
         try {
             $data = $request->validate([
+                'user_id' => 'required|string',
                 'last_name' => 'string',
                 'first_name' => 'string',
                 'email' => 'email|unique:patients,email,' . $patient->id,
