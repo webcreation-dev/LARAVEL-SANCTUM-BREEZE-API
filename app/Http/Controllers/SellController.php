@@ -41,7 +41,7 @@ class SellController extends Controller
         try {
 
             $data = $request->validate([
-                'patient_id' => 'required|number',
+                'patient_id' => 'required|numeric',
                 'verre_type' => 'required|string',
                 'montant' => 'required|numeric',
                 'acompte' => 'numeric',
