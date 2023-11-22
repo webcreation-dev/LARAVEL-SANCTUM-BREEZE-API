@@ -25,11 +25,11 @@ class RegisteredUserController extends Controller
      *
      * @bodyParam email string required Email de l'employé
      */
-    public function getUser(Request $request)
-    {
-        $user = User::email($request->email)->first();
-        return self::apiResponse(true, "Information de l'utilisateur", $user);
-    }
+    // public function getUser(Request $request)
+    // {
+    //     $user = User::email($request->email)->first();
+    //     return self::apiResponse(true, "Information de l'utilisateur", $user);
+    // }
 
     /**
      * LISTE DES UTILISATEURS
