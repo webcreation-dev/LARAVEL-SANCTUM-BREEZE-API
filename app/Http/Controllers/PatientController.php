@@ -113,9 +113,9 @@ class PatientController extends Controller
 
             $patient->update($data);
 
-            return self::apiResponse(true, "Patient mis à jour avec succès");
+            return self::apiResponse(true, "Patient mis à jour avec succès", $patient);
         }catch( ValidationException ) {
-            return self::apiResponse(false, "Échec de la mise à jour du patient");
+            return self::apiResponse(false, "Échec de la mise à jour du patient", $patient);
         }
     }
 

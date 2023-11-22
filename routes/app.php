@@ -15,6 +15,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/update_employees', [RegisteredUserController::class, 'updateEmployee']);
 
     Route::get('/get_total_patients_by_employee', [RegisteredUserController::class, 'getPatientTreatByEmployee']);
+    Route::get('/get_user', [RegisteredUserController::class, 'getUser']);
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
