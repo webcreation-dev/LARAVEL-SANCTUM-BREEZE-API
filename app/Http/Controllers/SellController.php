@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sell;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class SellController extends Controller
 {
@@ -59,7 +59,7 @@ class SellController extends Controller
     /**
      * METTRE A JOUR UNE VENTE
      *
-     * @bodyParam patient_id number ID du patient
+     * @bodyParam patient_id numeric ID du patient
      * @bodyParam verre_type string Type de verre
      * @bodyParam montant numeric Montant
      * @bodyParam acompte numeric Acompte
