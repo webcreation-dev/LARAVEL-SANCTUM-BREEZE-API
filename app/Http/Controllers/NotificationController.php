@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\Patient;
 use App\Models\Sell;
 use Illuminate\Http\Request;
 
@@ -19,14 +20,18 @@ class NotificationController extends Controller
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
-            $dateLivraison = strtotime($sell->date_livraison);
-            // $dateLimite = strtotime("+2 years", $dateLivraison);
-            $dateLimite = date('Y-m-d', $dateLivraison);
+            $patient = Patient::find($sell->patient_id);
 
-            if (date('Y-m-d') >= $dateLimite) {
-                $notification = new Notification();
-                $notification->patient_id = $sell->patient_id;
-                $notification->save();
+            if (!$patient) {
+                $dateLivraison = strtotime($sell->date_livraison);
+                // $dateLimite = strtotime("+2 years", $dateLivraison);
+                $dateLimite = date('Y-m-d', $dateLivraison);
+
+                if (date('Y-m-d') >= $dateLimite) {
+                    $notification = new Notification();
+                    $notification->patient_id = $sell->patient_id;
+                    $notification->save();
+                }
             }
         }
 
