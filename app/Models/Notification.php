@@ -12,6 +12,6 @@ class Notification extends Model
     protected $fillable = ['patient_id', 'status'];
 
     public function patient() {
-        return $this->belongsTo(Property::class, 'patient_id');
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 }
