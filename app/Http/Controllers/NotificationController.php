@@ -20,8 +20,8 @@ class NotificationController extends Controller
 
         foreach ($sells as $sell) {
             $dateLivraison = strtotime($sell->date_livraison);
-            $dateLimite = strtotime("+2 years", $dateLivraison);
-            $dateLimite = date('Y-m-d', $dateLimite);
+            // $dateLimite = strtotime("+2 years", $dateLivraison);
+            $dateLimite = date('Y-m-d', $dateLivraison);
 
             if (date('Y-m-d') >= $dateLimite) {
                 $notification = new Notification();
