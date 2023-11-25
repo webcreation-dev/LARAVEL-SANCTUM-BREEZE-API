@@ -20,7 +20,7 @@ class NotificationController extends Controller
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
-            $patient = Patient::find($sell->patient_id);
+            $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
             if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
