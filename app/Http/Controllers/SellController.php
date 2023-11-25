@@ -26,7 +26,7 @@ class SellController extends Controller
     /**
      * ENREGISTRER UNE VENTE
      *
-     * @bodyParam patient_id number required ID du patient
+     * @bodyParam patient_id numeric required ID du patient
      * @bodyParam verre_type string required Type de verre
      * @bodyParam montant numeric required Montant
      * @bodyParam acompte numeric Acompte
