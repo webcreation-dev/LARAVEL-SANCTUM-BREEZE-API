@@ -103,15 +103,18 @@ class NotificationController extends Controller
     // }
 
     /**
-     * Remove the specified resource from storage.
+     * SUPRIMER UNE NOTIFICATION
+     *
      *
      * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    // public function destroy(Notification $notification)
-    // {
-    //     //
-    // }
+    public function destroy(Notification $notification)
+    {
+
+            $notification->delete();
+            return self::apiResponse(true, "Notification supprimée avec succès", 200);
+    }
 
     public static function apiResponse($success, $message, $data = [], $status = 200) //: array
     {
