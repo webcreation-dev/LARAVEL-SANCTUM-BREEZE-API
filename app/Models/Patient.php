@@ -24,4 +24,8 @@ class Patient extends Model
         'right_eye_vl_correction',
         'right_eye_vp_correction',
     ];
+
+    public function sells() {
+        return $this->hasMany(Sell::class, 'patient_id');
+    }
 }

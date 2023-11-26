@@ -24,6 +24,22 @@ class PatientController extends Controller
         }
     }
 
+    /**
+     *
+     * LISTE DES PATIENTS AVEC LEURS VENTES
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPatientsWithSells()
+    {
+        try {
+            $patients = Patient::with('sells')->get();
+            return self::apiResponse(true, "Récupération de tous les patients avec leurs ventes", $patients);
+        }catch( ValidationException ) {
+            return self::apiResponse(false, "Echec de la récupération de tous les patients");
+        }
+    }
+
 
     /**
      * ENREGISTRER UN PATIENT

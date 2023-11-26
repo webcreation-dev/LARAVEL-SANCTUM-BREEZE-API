@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('patients', PatientController::class);
+    Route::get('/get_all_patients', [PatientController::class, 'getAllPatients']);
+
     Route::resource('sells', SellController::class);
     Route::resource('notifications', NotificationController::class);
+
 
     Route::get('/get_all_employees', [RegisteredUserController::class, 'getAllEmployees']);
     Route::post('/create_employees', [RegisteredUserController::class, 'createEmployee']);
