@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('patients', PatientController::class);
-    Route::get('/get_all_patients', [PatientController::class, 'getAllPatients']);
+    Route::get('/get_all_patients', [PatientController::class, 'getPatientsWithSells']);
 
     Route::resource('sells', SellController::class);
     Route::resource('notifications', NotificationController::class);

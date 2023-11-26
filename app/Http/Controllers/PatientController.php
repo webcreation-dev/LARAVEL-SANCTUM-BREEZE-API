@@ -32,12 +32,12 @@ class PatientController extends Controller
      */
     public function getPatientsWithSells()
     {
-        // try {
+        try {
             $patients = Patient::with('sells')->get();
             return self::apiResponse(true, "Récupération de tous les patients avec leurs ventes", $patients);
-        // }catch( ValidationException ) {
-        //     return self::apiResponse(false, "Echec de la récupération de tous les patients");
-        // }
+        }catch( ValidationException ) {
+            return self::apiResponse(false, "Echec de la récupération de tous les patients");
+        }
     }
 
 
