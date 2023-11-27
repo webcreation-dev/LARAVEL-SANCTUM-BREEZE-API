@@ -17,7 +17,7 @@ class NotificationController extends Controller
     public function index()
     {
 
-        $date = '2011-04-8 08:29:49';
+        $date = '2011-04-8';
         $currentDate = strtotime($date);
         $futureDate = $currentDate+(60*5);
         $formatDate = date("Y-m-d H:i:s", $futureDate);
