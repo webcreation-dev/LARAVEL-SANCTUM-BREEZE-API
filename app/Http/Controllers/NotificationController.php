@@ -17,14 +17,21 @@ class NotificationController extends Controller
     public function index()
     {
 
+        $date = '2011-04-8 08:29:49';
+        $currentDate = strtotime($date);
+        $futureDate = $currentDate+(60*5);
+        $formatDate = date("Y-m-d H:i:s", $futureDate);
+
+        dd($formatDate);
+
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
-            // $patient = Notification::where('patient_id', $sell->patient_id)->first();
+            $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
-            // if (!$patient) {
+            if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
-                dd($sell->date_livraison);
+                // dd($dateLivraison);
                 $dateLimite = strtotime("+5 minutes", $dateLivraison);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
@@ -33,7 +40,7 @@ class NotificationController extends Controller
                     $notification->patient_id = $sell->patient_id;
                     $notification->save();
                 }
-            // }
+            }
         }
 
         $count = Notification::where('status', 0)->count();
