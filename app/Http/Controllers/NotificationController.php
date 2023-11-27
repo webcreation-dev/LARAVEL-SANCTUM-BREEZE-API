@@ -17,13 +17,6 @@ class NotificationController extends Controller
     public function index()
     {
 
-        $date = '2011-04-8';
-        $currentDate = strtotime($date);
-        $futureDate = $currentDate+(60*5);
-        $formatDate = date("Y-m-d H:i:s", $futureDate);
-
-        dd($formatDate);
-
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
@@ -31,11 +24,10 @@ class NotificationController extends Controller
 
             if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
-                // dd($dateLivraison);
-                $dateLimite = strtotime("+5 minutes", $dateLivraison);
+                $dateLimite =  $dateLivraison+(60*5);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
-                if (date('Y-m-d') >= $dateLimite) {
+                if ($dateLimite >= date('Y-m-d H:i:s')) {
                     $notification = new Notification();
                     $notification->patient_id = $sell->patient_id;
                     $notification->save();
@@ -66,9 +58,9 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        $notifications = Notification::where('status', 0)->get();
+        $notifications = Notification::where('status', 1)->get();
         foreach ($notifications as $notification) {
-            $notification->status = 1;
+            $notification->status = 0;
             $notification->save();
         }
         $notifications = Notification::with(['patient'])->get();
