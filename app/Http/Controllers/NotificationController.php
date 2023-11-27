@@ -27,6 +27,8 @@ class NotificationController extends Controller
                 $dateLimite =  $dateLivraison + (60 * 60 * 23) + (60 * 35);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
+                dd($dateLimite);
+
                 if (date('Y-m-d H:i:s') >= $dateLimite) {
                     $notification = new Notification();
                     $notification->patient_id = $sell->patient_id;
