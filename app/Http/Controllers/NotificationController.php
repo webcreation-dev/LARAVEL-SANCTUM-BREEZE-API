@@ -22,7 +22,7 @@ class NotificationController extends Controller
         foreach ($sells as $sell) {
             $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
-            // if (!$patient) {
+            if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
                 $dateLimite =  $dateLivraison+ + (60 * 60 * 23) + (60 * 30);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
@@ -33,7 +33,7 @@ class NotificationController extends Controller
                     $notification->save();
                 }
             }
-        // }
+        }
 
         $count = Notification::where('status', 0)->count();
 
