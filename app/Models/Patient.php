@@ -28,4 +28,8 @@ class Patient extends Model
     public function sells() {
         return $this->hasMany(Sell::class, 'patient_id');
     }
+
+    public function user() {
+        return $this->belongsTo(Property::class, 'user_id');
+    }
 }

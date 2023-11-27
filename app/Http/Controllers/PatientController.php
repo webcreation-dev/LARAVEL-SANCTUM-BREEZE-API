@@ -26,15 +26,15 @@ class PatientController extends Controller
 
     /**
      *
-     * LISTE DES PATIENTS AVEC LEURS VENTES
+     * LISTE DES PATIENTS AVEC LEURS INFOS
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPatientsWithSells()
+    public function getPatientsWithAllsInfos()
     {
         try {
-            $patients = Patient::with('sells')->get();
-            return self::apiResponse(true, "Récupération de tous les patients avec leurs ventes", $patients);
+            $patients = Patient::with(['sells', 'user'])->get();
+            return self::apiResponse(true, "Récupération de tous les patients avec leurs infos", $patients);
         }catch( ValidationException ) {
             return self::apiResponse(false, "Echec de la récupération de tous les patients");
         }
