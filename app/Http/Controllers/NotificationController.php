@@ -24,7 +24,7 @@ class NotificationController extends Controller
 
             // if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
-                dd($dateLivraison);
+                dd($sell->date_livraison);
                 $dateLimite = strtotime("+5 minutes", $dateLivraison);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
