@@ -235,7 +235,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * NOMBRE DE PATIENTS TRAITES PAR EMPLOYE
+     * ¨PATIENTS DE L'EMPLOYEE AVEC TOUS LES INFOS
      *
      * @bodyParam employee_id numeric required ID de l'empoyee
      */
