@@ -245,8 +245,8 @@ class RegisteredUserController extends Controller
             $data = $request->validate([
                 'employee_id' => ['required', 'numeric'],
             ]);
-            $user_count = Patient::where('user_id', $data['employee_id'])->count();
-            return self::apiResponse(true, "Nombre de patient traité par l'employé", $user_count);
+            $patients = Patient::where('user_id', $data['employee_id'])->with(['sells', 'user'])->get();;
+            return self::apiResponse(true, "Patients de l'employé avec tous les infos", $patients);
         }catch( ValidationException ) {
             return self::apiResponse(false, "Échec de la récupération");
         }
