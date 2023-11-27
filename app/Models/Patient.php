@@ -30,6 +30,6 @@ class Patient extends Model
     }
 
     public function user() {
-        return $this->belongsTo(Property::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
