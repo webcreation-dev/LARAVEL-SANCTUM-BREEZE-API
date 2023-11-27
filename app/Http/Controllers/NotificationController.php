@@ -22,18 +22,18 @@ class NotificationController extends Controller
         foreach ($sells as $sell) {
             $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
-            if (!$patient) {
+            // if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
-                $dateLimite =  $dateLivraison+(60*5);
+                $dateLimite =  $dateLivraison+ + (60 * 60 * 23) + (60 * 30);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
-                if ($dateLimite >= date('Y-m-d H:i:s', '2023-11-27 00:05:00')) {
+                if ($dateLimite >= date('Y-m-d H:i:s')) {
                     $notification = new Notification();
                     $notification->patient_id = $sell->patient_id;
                     $notification->save();
                 }
             }
-        }
+        // }
 
         $count = Notification::where('status', 0)->count();
 
