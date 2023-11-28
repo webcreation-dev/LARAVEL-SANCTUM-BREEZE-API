@@ -31,7 +31,7 @@ class NotificationController extends Controller
                 $dateLimite =  $dateLivraison - (60 * 60 * 1) + (60 * 1);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
 
-                Mail::to($patient->email)->send(new NotificationMail);
+                // Mail::to($patient->email)->send(new NotificationMail);
 
                 if (date('Y-m-d H:i:s') >= $dateLimite) {
                     $notification = new Notification();
