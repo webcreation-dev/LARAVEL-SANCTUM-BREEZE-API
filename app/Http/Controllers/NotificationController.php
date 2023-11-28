@@ -25,7 +25,7 @@ class NotificationController extends Controller
             $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
             if (!$patient) {
-                $dateLivraison = strtotime($sell->date_livraison);
+                $dateLivraison = strtotime($sell->created_at);
                 // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
 
                 $dateLimite =  $dateLivraison - (60 * 60 * 1) + (60 * 5);
