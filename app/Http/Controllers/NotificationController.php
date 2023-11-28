@@ -22,7 +22,7 @@ class NotificationController extends Controller
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
-            dd($sell->created_at);
+            dd($sell['created_at']);
 
             $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
