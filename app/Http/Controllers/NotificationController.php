@@ -18,27 +18,33 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $date_actuelle = date("Y-m-d H:i:s");
-        $date_plus_une_heure = date("Y-m-d H:i:s", strtotime("now +1 hour"));
-
-        dd($date_actuelle, $date_plus_une_heure);
-
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
-            $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
-            if (!$patient) {
-                $dateLivraison = strtotime($sell->created_at);
-                // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
-                $dateLimite =  $dateLivraison + (60 * 1);
-                $dateLimite = date('Y-m-d H:i:s', $dateLimite);
+            $dateLivraison = strtotime($sell->date_livraison);
+            // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
+            $dateDay =  $dateLivraison + (60 * 1);
+            $dateWeek =  $dateLivraison + (60 * 5);
 
-                // Mail::to($patient->email)->send(new NotificationMail);
+            $dateDay = date('Y-m-d H:i:s', $dateDay);
+            $dateWeek = date('Y-m-d H:i:s', $dateWeek);
 
-                if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateLimite) {
+ 
+            if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateWeek) {
+                $patient = Notification::where('patient_id', $sell->patient_id)->byType('week')->get();
+                if (!$patient) {
                     $notification = new Notification();
                     $notification->patient_id = $sell->patient_id;
+                    $notification->save();
+                }
+            }
+
+            if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateDay) {
+                $patient = Notification::where('patient_id', $sell->patient_id)->byType('day')->get();
+                if (!$patient) {
+                    $notification = new Notification();
+                    $notification->type = 'day';
                     $notification->save();
                 }
             }

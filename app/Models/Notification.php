@@ -9,9 +9,14 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['patient_id', 'status'];
+    protected $fillable = ['patient_id', 'status', 'type'];
 
     public function patient() {
         return $this->belongsTo(Patient::class, 'patient_id');
+    }
+
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', $type);
     }
 }
