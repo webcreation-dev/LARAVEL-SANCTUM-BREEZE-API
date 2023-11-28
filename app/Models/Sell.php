@@ -16,5 +16,7 @@ class Sell extends Model
         'acompte',
         'solde',
         'date_livraison',
+        'created_at',
+        'updated_at',
     ];
 }
