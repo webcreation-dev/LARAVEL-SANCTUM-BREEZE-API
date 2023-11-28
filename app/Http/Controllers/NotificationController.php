@@ -30,6 +30,8 @@ class NotificationController extends Controller
 
                 $dateLimite =  $dateLivraison + (60 * 1);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
+                dd($dateLimite, date('Y-m-d H:i:s'));
+
 
                 // Mail::to($patient->email)->send(new NotificationMail);
 
