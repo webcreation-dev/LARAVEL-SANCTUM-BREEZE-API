@@ -22,11 +22,12 @@ class NotificationController extends Controller
         $sells = Sell::select('patient_id', 'date_livraison')->get();
 
         foreach ($sells as $sell) {
+            dd($sell->patient_id);
+
             $patient = Notification::where('patient_id', $sell->patient_id)->first();
 
             // if (!$patient) {
                 $dateLivraison = strtotime($sell->created_at);
-                dd($sell);
                 // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
 
                 $dateLimite =  $dateLivraison + (60 * 1);
