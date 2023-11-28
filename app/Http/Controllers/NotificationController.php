@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationMail;
 use App\Models\Notification;
 use App\Models\Patient;
 use App\Models\Sell;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -24,9 +26,12 @@ class NotificationController extends Controller
 
             if (!$patient) {
                 $dateLivraison = strtotime($sell->date_livraison);
-                $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
-                // $dateLimite =  $dateLivraison + (60 * 60 * 22) + (60 * 45);
+                // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
+
+                $dateLimite =  $dateLivraison - (60 * 60 * 1) + (60 * 5);
                 $dateLimite = date('Y-m-d H:i:s', $dateLimite);
+
+                Mail::to($patient->email)->send(new NotificationMail);
 
                 if (date('Y-m-d H:i:s') >= $dateLimite) {
                     $notification = new Notification();
