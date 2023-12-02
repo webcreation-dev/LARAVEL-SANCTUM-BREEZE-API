@@ -15,7 +15,7 @@ class Notification extends Model
         return $this->belongsTo(Patient::class, 'patient_id');
     }
 
-    public function scopeType($query, $type)
+    public function scopeByType($query, $type)
     {
         return $query->where('type', $type);
     }

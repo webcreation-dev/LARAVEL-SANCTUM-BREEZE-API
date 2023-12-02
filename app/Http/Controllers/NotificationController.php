@@ -30,20 +30,25 @@ class NotificationController extends Controller
             $dateDay = date('Y-m-d H:i:s', $dateDay);
             $dateWeek = date('Y-m-d H:i:s', $dateWeek);
 
-
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateWeek) {
-                $patient = Notification::where('patient_id', $sell->patient_id)->byType('week')->get();
-                if (!$patient) {
+
+                $patient = Notification::where('patient_id', $sell->id)->byType('week')->get();
+
+                if ($patient->isEmpty()) {
                     $notification = new Notification();
-                    $notification->patient_id = $sell->patient_id;
+                    $notification->patient_id = $sell->id;
+                    $notification->type = 'day';
                     $notification->save();
                 }
             }
 
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateDay) {
-                $patient = Notification::where('patient_id', $sell->patient_id)->byType('day')->get();
-                if (!$patient) {
+
+                $patient = Notification::where('patient_id', $sell->id)->byType('day')->get();
+
+                if ($patient->isEmpty()) {
                     $notification = new Notification();
+                    $notification->patient_id = $sell->id;
                     $notification->type = 'day';
                     $notification->save();
                 }
