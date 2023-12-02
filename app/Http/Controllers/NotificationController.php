@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Models\Sell;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 
 class NotificationController extends Controller
 {
@@ -18,11 +19,16 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $sells = Patient::all();
+        $patients = Patient::all();
 
-        foreach ($sells as $sell) {
+        $twilioSid = env('TWILIO_SID');
+        $twilioToken = env('TWILIO_AUTH_TOKEN');
+        $twilioWhatsAppNumber = env('TWILIO_WHATSAPP_NUMBER');
 
-            $dateLivraison = strtotime($sell->created_at);
+
+        foreach ($patients as $patient) {
+
+            $dateLivraison = strtotime($patient->created_at);
             // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
             $dateDay =  $dateLivraison + (60 * 60 * 1) + (60 * 1);
             $dateWeek =  $dateLivraison + (60 * 60 * 1) + (60 * 5);
@@ -32,25 +38,52 @@ class NotificationController extends Controller
 
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateWeek) {
 
-                $patient = Notification::where('patient_id', $sell->id)->byType('week')->get();
+                $patient = Notification::where('patient_id', $patient->id)->byType('week')->get();
 
                 if ($patient->isEmpty()) {
                     $notification = new Notification();
-                    $notification->patient_id = $sell->id;
+                    $notification->patient_id = $patient->id;
                     $notification->type = 'day';
                     $notification->save();
+
+
+                    // ENVOI DE MESSAGE WHATSAPP
+                    $recipientNumber = 'whatsapp:+229"'.$patient->phone_number;
+                    $message = "Vous devez renouveler votre ordonnance dans 7 jours";
+                    $twilio = new Client($twilioSid, $twilioToken);
+                    $twilio->messages->create(
+                        $recipientNumber,
+                        [
+                            "from" => 'whatsapp:'.$twilioWhatsAppNumber,
+                            "body" => $message,
+                        ]
+                    );
+
                 }
             }
 
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateDay) {
 
-                $patient = Notification::where('patient_id', $sell->id)->byType('day')->get();
+                $patient = Notification::where('patient_id', $patient->id)->byType('day')->get();
 
                 if ($patient->isEmpty()) {
                     $notification = new Notification();
-                    $notification->patient_id = $sell->id;
+                    $notification->patient_id = $patient->id;
                     $notification->type = 'day';
                     $notification->save();
+
+                    // ENVOI DE MESSAGE WHATSAPP
+                    $recipientNumber = 'whatsapp:+229"'.$patient->phone_number;
+                    $message = "Vous devez renouveler votre ordonnance dans 24 heures";
+                    $twilio = new Client($twilioSid, $twilioToken);
+                    $twilio->messages->create(
+                        $recipientNumber,
+                        [
+                            "from" => 'whatsapp:'.$twilioWhatsAppNumber,
+                            "body" => $message,
+                        ]
+                    );
+
                 }
             }
         }
