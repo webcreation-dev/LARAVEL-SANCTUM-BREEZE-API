@@ -18,11 +18,11 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $sells = Sell::select('patient_id', 'date_livraison')->get();
+        $sells = Patient::all();
 
         foreach ($sells as $sell) {
 
-            $dateLivraison = strtotime($sell->date_livraison);
+            $dateLivraison = strtotime($sell->created_at);
             // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
             $dateDay =  $dateLivraison + (60 * 1);
             $dateWeek =  $dateLivraison + (60 * 5);
@@ -30,7 +30,7 @@ class NotificationController extends Controller
             $dateDay = date('Y-m-d H:i:s', $dateDay);
             $dateWeek = date('Y-m-d H:i:s', $dateWeek);
 
- 
+
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateWeek) {
                 $patient = Notification::where('patient_id', $sell->patient_id)->byType('week')->get();
                 if (!$patient) {

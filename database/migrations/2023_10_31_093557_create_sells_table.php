@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('montant', 10, 2);
             $table->decimal('acompte', 10, 2);
             $table->decimal('solde', 10, 2);
-            $table->dateTime('date_livraison');
+            $table->date('date_livraison');
             $table->timestamps();
         });
     }
