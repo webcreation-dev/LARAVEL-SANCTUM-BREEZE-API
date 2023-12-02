@@ -38,17 +38,17 @@ class NotificationController extends Controller
 
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateWeek) {
 
-                $patient = Notification::where('patient_id', $patient->id)->byType('week')->get();
+                $checkPatient = Notification::where('patient_id', $patient->id)->byType('week')->get();
 
-                if ($patient->isEmpty()) {
+                if ($checkPatient->isEmpty()) {
                     $notification = new Notification();
                     $notification->patient_id = $patient->id;
-                    $notification->type = 'day';
+                    $notification->type = 'week';
                     $notification->save();
 
 
                     // ENVOI DE MESSAGE WHATSAPP
-                    $recipientNumber = 'whatsapp:+229"'.$patient->phone_number;
+                    $recipientNumber = 'whatsapp:+229'.$patient->phone_number;
                     $message = "Vous devez renouveler votre ordonnance dans 7 jours";
                     $twilio = new Client($twilioSid, $twilioToken);
                     $twilio->messages->create(
@@ -64,16 +64,16 @@ class NotificationController extends Controller
 
             if (date("Y-m-d H:i:s", strtotime("now +1 hour")) >= $dateDay) {
 
-                $patient = Notification::where('patient_id', $patient->id)->byType('day')->get();
+                $checkPatient = Notification::where('patient_id', $patient->id)->byType('day')->get();
 
-                if ($patient->isEmpty()) {
+                if ($checkPatient->isEmpty()) {
                     $notification = new Notification();
                     $notification->patient_id = $patient->id;
                     $notification->type = 'day';
                     $notification->save();
 
                     // ENVOI DE MESSAGE WHATSAPP
-                    $recipientNumber = 'whatsapp:+229"'.$patient->phone_number;
+                    $recipientNumber = 'whatsapp:+229'.$patient->phone_number;
                     $message = "Vous devez renouveler votre ordonnance dans 24 heures";
                     $twilio = new Client($twilioSid, $twilioToken);
                     $twilio->messages->create(
