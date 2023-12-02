@@ -38,5 +38,19 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'profil_id' => '1',
         ]);
+
+        User::factory()->create([
+            'name' => 'Administrateur',
+            'email' => 'charbelzeusmamlankou@gmail.com',
+            'password' => bcrypt('1234567890'),
+            'profil_id' => '1',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Employé',
+            'email' => 'charbelmamlankou@gmail.com',
+            'password' => bcrypt('1234567890'),
+            'profil_id' => '2',
+        ]);
     }
 }

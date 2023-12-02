@@ -41,7 +41,7 @@ class WhatsAppController extends Controller
                   "from" => "whatsapp:+14155238886",
                   "body" => "Your appointment is coming up on July 21 at 3PM"
                 )
-              );
+            );
 
             return response()->json(['message' => 'WhatsApp message sent successfully']);
         } catch (\Exception $e) {
