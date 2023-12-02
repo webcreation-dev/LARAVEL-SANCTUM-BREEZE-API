@@ -43,6 +43,10 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'twilio_sid' => env('TWILIO_SID'),
+    'twilio_auth_token' => env('TWILIO_AUTH_TOKEN'),
+    'twilio_whatsapp_number' => env('TWILIO_WHATSAPP_NUMBER'),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
