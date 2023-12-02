@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('left_eye_vp_correction');
             $table->string('right_eye_vl_correction');
             $table->string('right_eye_vp_correction');
+            $table->dateTime('date_save');
             $table->timestamps();
         });
     }

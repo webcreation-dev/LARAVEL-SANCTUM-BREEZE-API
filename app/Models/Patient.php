@@ -23,6 +23,7 @@ class Patient extends Model
         'left_eye_vp_correction',
         'right_eye_vl_correction',
         'right_eye_vp_correction',
+        'date_save',
     ];
 
     public function sells() {
