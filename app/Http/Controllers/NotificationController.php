@@ -61,7 +61,7 @@ class NotificationController extends Controller
 
                     $message = $twilio->messages->create('whatsapp:+229'.$patient->phone_number, // to
                         array(
-                        "from" => 'whatsapp:'.$twilioWhatsAppNumber,
+                        "from" => "whatsapp:+14155238886",
                         "body" => $message
                         )
                     );
