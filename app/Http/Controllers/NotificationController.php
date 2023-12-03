@@ -59,7 +59,7 @@ class NotificationController extends Controller
                     //     ]
                     // );
 
-                    $message = $twilio->messages->create("whatsapp:+22996135159", // to
+                    $message = $twilio->messages->create('whatsapp:+229'.$patient->phone_number, // to
                         array(
                         "from" => "whatsapp:+14155238886",
                         "body" => "Your appointment is coming up on July 21 at 3PM"
