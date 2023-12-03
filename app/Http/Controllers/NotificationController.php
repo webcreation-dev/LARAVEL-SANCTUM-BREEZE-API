@@ -91,7 +91,7 @@ class NotificationController extends Controller
                     $twilio->messages
               ->create('whatsapp:+229'.$patient->phone_number, // to
                 array(
-                  "from" => "whatsapp:+14155238886", 
+                  "from" => "whatsapp:+14155238886",
                   "body" => "Vous devez renouveler votre ordonnance dans 24 heures"
                 )
             );

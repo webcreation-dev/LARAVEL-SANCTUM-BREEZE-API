@@ -106,6 +106,7 @@ class PatientController extends Controller
      * @bodyParam left_eye_vp_correction string Correction Oeil Gauche VP
      * @bodyParam right_eye_vl_correction string Correction Oeil Droit VL
      * @bodyParam right_eye_vp_correction string Correction Oeil Droit VP
+     * @bodyParam date_save datetime required Date and time
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Patient  $patient
@@ -128,6 +129,7 @@ class PatientController extends Controller
                 'left_eye_vp_correction' => 'string',
                 'right_eye_vl_correction' => 'string',
                 'right_eye_vp_correction' => 'string',
+                'date_save' => 'required'
             ]);
 
             $patient->update($data);
