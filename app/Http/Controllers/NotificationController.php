@@ -30,8 +30,8 @@ class NotificationController extends Controller
 
             $dateLivraison = strtotime($patient->date_save);
             // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
-            $dateDay =  $dateLivraison + (60 * 60 * 1) + (60 * 1);
-            $dateWeek =  $dateLivraison + (60 * 60 * 1) + (60 * 5);
+            $dateDay =  $dateLivraison + (60 * 1);
+            $dateWeek =  $dateLivraison + (60 * 5);
 
             $dateDay = date('Y-m-d H:i:s', $dateDay);
             $dateWeek = date('Y-m-d H:i:s', $dateWeek);
