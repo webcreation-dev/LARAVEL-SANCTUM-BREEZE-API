@@ -56,7 +56,9 @@ class PatientController extends Controller
      * @bodyParam left_eye_vl_correction string required Correction Oeil Gauche VL
      * @bodyParam left_eye_vp_correction string required Correction Oeil Gauche VP
      * @bodyParam right_eye_vl_correction string required Correction Oeil Droit VL
-     * @bodyParam right_eye_vp_correction string required Correction Oeil Droit VP
+     * @bodyParam right_eye_vp_correction string required Correction Oeil Droit
+     * Date de sauvegarde de type timestamp
+     * @@bodyParam date-save datetime required Date and time
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
