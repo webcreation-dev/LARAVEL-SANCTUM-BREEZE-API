@@ -28,7 +28,7 @@ class NotificationController extends Controller
 
         foreach ($patients as $patient) {
 
-            $dateLivraison = strtotime($patient->created_at);
+            $dateLivraison = strtotime($patient->date_save);
             // $dateLimite =  $dateLivraison + (60 * 60 * 24 * 365 * 2);
             $dateDay =  $dateLivraison + (60 * 60 * 1) + (60 * 1);
             $dateWeek =  $dateLivraison + (60 * 60 * 1) + (60 * 5);

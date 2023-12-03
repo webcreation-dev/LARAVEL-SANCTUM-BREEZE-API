@@ -78,6 +78,7 @@ class PatientController extends Controller
                 'left_eye_vp_correction' => 'required|string',
                 'right_eye_vl_correction' => 'required|string',
                 'right_eye_vp_correction' => 'required|string',
+                'date_save' => 'required'
             ]);
             $patient = Patient::create($data);
             return self::apiResponse(true, "Patient ajouté avec succès", $patient);
