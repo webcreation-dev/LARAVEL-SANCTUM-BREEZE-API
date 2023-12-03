@@ -49,13 +49,21 @@ class NotificationController extends Controller
 
                     // ENVOI DE MESSAGE WHATSAPP
                     $twilio = new Client($twilioSid, $twilioToken);
+                    // $twilio->messages
+                    // ->create('whatsapp:+229'.$patient->phone_number, // to
+                    //     array(
+                    //     "from" => "whatsapp:+14155238886",
+                    //     "body" => "Vous devez renouveler votre ordonnance dans 7 jours"
+                    //     )
+                    // );
                     $twilio->messages
-                    ->create('whatsapp:+229'.$patient->phone_number, // to
+                    ->create("whatsapp:+22996135159", // to
                         array(
                         "from" => "whatsapp:+14155238886",
                         "body" => "Vous devez renouveler votre ordonnance dans 7 jours"
                         )
                     );
+
 
                 }
             }
@@ -72,8 +80,15 @@ class NotificationController extends Controller
 
                     // ENVOI DE MESSAGE WHATSAPP
                     $twilio = new Client($twilioSid, $twilioToken);
+                    // $twilio->messages
+                    // ->create('whatsapp:+229'.$patient->phone_number, // to
+                    //     array(
+                    //     "from" => "whatsapp:+14155238886",
+                    //     "body" => "Vous devez renouveler votre ordonnance dans 24 heures"
+                    //     )
+                    // );
                     $twilio->messages
-                    ->create('whatsapp:+229'.$patient->phone_number, // to
+                    ->create("whatsapp:+22996135159", // to
                         array(
                         "from" => "whatsapp:+14155238886",
                         "body" => "Vous devez renouveler votre ordonnance dans 24 heures"
