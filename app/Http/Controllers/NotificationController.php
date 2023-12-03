@@ -60,7 +60,7 @@ class NotificationController extends Controller
               ->create("whatsapp:+22996135159", // to
                 array(
                   "from" => "whatsapp:+14155238886",
-                  "body" => "Your appointment is coming up on July 21 at 3PM"
+                  "body" => "Vous devez renouveler votre ordonnance dans 7 jours"
                 )
             );
 
@@ -91,7 +91,7 @@ class NotificationController extends Controller
               ->create("whatsapp:+22996135159", // to
                 array(
                   "from" => "whatsapp:+14155238886",
-                  "body" => "Your appointment is coming up on July 21 at 3PM"
+                  "body" => "Vous devez renouveler votre ordonnance dans 24 heures"
                 )
             );
 
