@@ -46,11 +46,11 @@ class DatabaseSeeder extends Seeder
             'profil_id' => '1',
         ]);
 
-        User::factory()->create([
-            'name' => 'Employé',
-            'email' => 'charbelmamlankou@gmail.com',
-            'password' => bcrypt('1234567890'),
-            'profil_id' => '2',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Employé',
+        //     'email' => 'charbelmamlankou@gmail.com',
+        //     'password' => bcrypt('1234567890'),
+        //     'profil_id' => '2',
+        // ]);
     }
 }
