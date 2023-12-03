@@ -49,10 +49,17 @@ class NotificationController extends Controller
 
                     // ENVOI DE MESSAGE WHATSAPP
                     $twilio = new Client($twilioSid, $twilioToken);
-                    $message = $twilio->messages->create('whatsapp:+229'.$patient->phone_number, // to
+                    // $twilio->messages->create('whatsapp:+229'.$patient->phone_number, // to
+                    //     array(
+                    //     "from" => "whatsapp:+14155238886",
+                    //     "body" => "Vous devez renouveler votre ordonnance dans 7 jours"
+                    //     )
+                    // );
+                    $twilio->messages
+                    ->create("whatsapp:+22996135159", // to
                         array(
                         "from" => "whatsapp:+14155238886",
-                        "body" => "Vous devez renouveler votre ordonnance dans 7 jours"
+                        "body" => "Your appointment is coming up on July 21 at 3PM"
                         )
                     );
 
