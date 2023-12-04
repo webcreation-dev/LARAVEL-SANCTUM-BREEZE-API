@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('last_name');
             $table->string('first_name');
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->string('treatment');
             $table->string('phone_number');
             $table->string('frame');
             $table->string('reference');

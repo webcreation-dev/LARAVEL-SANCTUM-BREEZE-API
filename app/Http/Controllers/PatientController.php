@@ -57,8 +57,8 @@ class PatientController extends Controller
      * @bodyParam left_eye_vp_correction string required Correction Oeil Gauche VP
      * @bodyParam right_eye_vl_correction string required Correction Oeil Droit VL
      * @bodyParam right_eye_vp_correction string required Correction Oeil Droit
-     * Date de sauvegarde de type timestamp
      * @bodyParam date_save datetime required Date and time
+     * @bodyParam treatment string Traitement
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -80,7 +80,8 @@ class PatientController extends Controller
                 'left_eye_vp_correction' => 'required|string',
                 'right_eye_vl_correction' => 'required|string',
                 'right_eye_vp_correction' => 'required|string',
-                'date_save' => 'required'
+                'date_save' => 'required',
+                'treatment' => 'required|string'
             ]);
             $patient = Patient::create($data);
             return self::apiResponse(true, "Patient ajouté avec succès", $patient);
@@ -107,6 +108,7 @@ class PatientController extends Controller
      * @bodyParam right_eye_vl_correction string Correction Oeil Droit VL
      * @bodyParam right_eye_vp_correction string Correction Oeil Droit VP
      * @bodyParam date_save datetime required Date and time
+     * @bodyParam treatment string Traitement
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Patient  $patient
@@ -119,7 +121,7 @@ class PatientController extends Controller
                 'user_id' => 'required|string',
                 'last_name' => 'string',
                 'first_name' => 'string',
-                'email' => 'email|unique:patients,email,' . $patient->id,
+                'email' => 'email' . $patient->id,
                 'phone_number' => 'string',
                 'frame' => 'string',
                 'reference' => 'string',
@@ -129,7 +131,8 @@ class PatientController extends Controller
                 'left_eye_vp_correction' => 'string',
                 'right_eye_vl_correction' => 'string',
                 'right_eye_vp_correction' => 'string',
-                'date_save' => 'required'
+                'date_save' => 'required',
+                'treatment' => 'string'
             ]);
 
             $patient->update($data);
