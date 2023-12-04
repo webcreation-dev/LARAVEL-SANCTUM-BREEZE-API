@@ -46,6 +46,13 @@ class DatabaseSeeder extends Seeder
             'profil_id' => '1',
         ]);
 
+        User::factory()->create([
+            'name' => 'Administrateur',
+            'email' => 'visionnetteoptiquepkou@gmail.com',
+            'password' => bcrypt('visionette@2023'),
+            'profil_id' => '1',
+        ]);
+
         // User::factory()->create([
         //     'name' => 'Employé',
         //     'email' => 'charbelmamlankou@gmail.com',
