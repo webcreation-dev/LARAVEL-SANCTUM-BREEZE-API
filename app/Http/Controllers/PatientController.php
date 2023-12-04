@@ -131,7 +131,7 @@ class PatientController extends Controller
                 'left_eye_vp_correction' => 'string',
                 'right_eye_vl_correction' => 'string',
                 'right_eye_vp_correction' => 'string',
-                'date_save' => 'required',
+                'date_save' => 'date',
                 'treatment' => 'string'
             ]);
 
