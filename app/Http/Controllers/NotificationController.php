@@ -47,6 +47,9 @@ class NotificationController extends Controller
                     $notification->save();
 
 
+                    //ENVOI DE MAIL
+                    Mail::to($patient->email)->send(new NotificationMail($patient->first_name));
+
                     // ENVOI DE MESSAGE WHATSAPP
                     $twilio = new Client($twilioSid, $twilioToken);
                     // $twilio->messages

@@ -13,16 +13,16 @@ class NotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    // public $contact;
+    public $name;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    // public function __construct($contact)
-    public function __construct()
+    // public function __construct()
+    public function __construct($name)
     {
-        // $this->contact = $contact;
+        $this->name = $name;
     }
 
     /**
