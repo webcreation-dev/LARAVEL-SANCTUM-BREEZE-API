@@ -1,6 +1,6 @@
-<!-- <div style="text-align: center;">
-    <img src="http://maydayphone.com/images/mayday-phone-logo.png" alt="Mon Logo" width='200'>
-</div> -->
+<div style="text-align: center;">
+    <img src="https://visionnette.vercel.app/assets/logo-d41cebb2.png" alt="Mon Logo" width='200'>
+</div>
     <br>
 
     <p style="text-align: left; color:black">
