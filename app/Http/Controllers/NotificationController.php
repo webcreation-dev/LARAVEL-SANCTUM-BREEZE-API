@@ -128,7 +128,9 @@ class NotificationController extends Controller
             $notification->status = 1;
             $notification->save();
         }
-        $notifications = Notification::with(['patient'])->get();
+
+        $notifications = Notification::with(['patient'])->where('type', '!=', 'passed')->get();
+        // $notifications = Notification::with(['patient'])->get();
 
         return self::apiResponse(true, "Notifications mis à jours", $notifications, 200);
     }
@@ -177,8 +179,10 @@ class NotificationController extends Controller
     public function destroy(Notification $notification)
     {
 
-            $notification->delete();
-            return self::apiResponse(true, "Notification supprimée avec succès", 200);
+        $notification->type = 'passed';
+        $notification->save();
+        // $notification->delete();
+        return self::apiResponse(true, "Notification supprimée avec succès", 200);
     }
 
     public static function apiResponse($success, $message, $data = [], $status = 200) //: array

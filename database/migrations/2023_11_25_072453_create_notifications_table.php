@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->boolean('status')->default(0);
-            $table->enum('type', ['week', 'day'])->default('week');
+            $table->enum('type', ['week', 'day', 'passed'])->default('week');
             $table->timestamps();
         });
     }
