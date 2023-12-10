@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('color');
             $table->string('price');
+            $table->string('montant_verre');
             $table->string('left_eye_vl_correction');
             $table->string('left_eye_vp_correction');
             $table->string('right_eye_vl_correction');

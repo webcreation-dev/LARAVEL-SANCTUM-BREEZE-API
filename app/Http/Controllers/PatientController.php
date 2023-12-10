@@ -59,6 +59,7 @@ class PatientController extends Controller
      * @bodyParam right_eye_vp_correction string required Correction Oeil Droit
      * @bodyParam date_save datetime required Date and time
      * @bodyParam treatment string Traitement
+     * @bodyParam montant_verre string Prix
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -81,7 +82,8 @@ class PatientController extends Controller
                 'right_eye_vl_correction' => 'required|string',
                 'right_eye_vp_correction' => 'required|string',
                 'date_save' => 'required',
-                'treatment' => 'required|string'
+                'treatment' => 'required|string',
+                'montant_verre' => 'required|numeric',
             ]);
             $patient = Patient::create($data);
             return self::apiResponse(true, "Patient ajouté avec succès", $patient);
@@ -109,6 +111,7 @@ class PatientController extends Controller
      * @bodyParam right_eye_vp_correction string Correction Oeil Droit VP
      * @bodyParam date_save datetime required Date and time
      * @bodyParam treatment string Traitement
+     * @bodyParam montant_verre string Prix
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Patient  $patient
@@ -132,7 +135,8 @@ class PatientController extends Controller
                 'right_eye_vl_correction' => 'string',
                 'right_eye_vp_correction' => 'string',
                 'date_save' => 'date',
-                'treatment' => 'string'
+                'treatment' => 'string',
+                'montant_verre' => 'required|numeric',
             ]);
 
             $patient->update($data);

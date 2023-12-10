@@ -25,6 +25,7 @@ class Patient extends Model
         'right_eye_vp_correction',
         'date_save',
         'treatment',
+        'montant_verre',
     ];
 
     public function sells() {
