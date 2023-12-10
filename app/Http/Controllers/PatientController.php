@@ -121,7 +121,7 @@ class PatientController extends Controller
                 'user_id' => 'required|string',
                 'last_name' => 'string',
                 'first_name' => 'string',
-                'email' => 'email' . $patient->id,
+                'email' => 'email',
                 'phone_number' => 'string',
                 'frame' => 'string',
                 'reference' => 'string',
