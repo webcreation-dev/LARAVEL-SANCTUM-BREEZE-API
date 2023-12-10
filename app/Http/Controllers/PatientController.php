@@ -136,7 +136,7 @@ class PatientController extends Controller
                 'right_eye_vp_correction' => 'string',
                 'date_save' => 'date',
                 'treatment' => 'string',
-                'montant_verre' => 'required|numeric',
+                'montant_verre' => 'numeric',
             ]);
 
             $patient->update($data);
