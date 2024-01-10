@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->string('email')->nullable();
+            
             $table->string('treatment');
             $table->string('phone_number');
             $table->string('frame');
